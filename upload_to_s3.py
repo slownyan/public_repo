@@ -27,7 +27,7 @@ router = APIRouter(
                    500: {"description": "Internal server error"},
                    503: {"description": "Service Unavailable"}
                    },
-        tags=['Configuration Files'],
+        tags=['File Server'],
 )
 
 def prepare_s3_config(config):
@@ -52,7 +52,7 @@ def prepare_s3_config(config):
         s3_settings['prefix'] = prefix
         return s3_settings
     except Exception as e:
-        logger.error("Error occurred during prepare s3 config", exc_info=True)
+        logger.exception("Error occurred during prepare s3 config", exc_info=e)
         raise
 
 def get_author(request):
